@@ -1,6 +1,7 @@
 package org.example
 
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import org.example.org.example.InfoJogo
 import org.example.org.example.Jogo
 import java.net.URI
@@ -40,13 +41,19 @@ fun main() {
     // Instanciando o Gson para realizar a desserialização do JSON para objetos Kotlin
     val gson = Gson()
 
-    // Desserializando o JSON para um objeto da classe InfoJogo usando o Gson
-    val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
+    val resultado = runCatching {
 
-    // Instanciando um novo objeto Jogo utilizando os dados obtidos do objeto InfoJogo
-    val meuJogo = Jogo(
-        meuInfoJogo.info.title,
-        meuInfoJogo.info.thumb
-    )
-    print(meuJogo)
+        // Desserializando o JSON para um objeto da classe InfoJogo usando o Gson
+        val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
+
+        // Instanciando um novo objeto Jogo utilizando os dados obtidos do objeto InfoJogo
+        val meuJogo = Jogo(
+            meuInfoJogo.info.title,
+            meuInfoJogo.info.thumb
+        )
+        print(meuJogo)
+    }
+    resultado.onFailure {
+        println("Jogo Inexistente. Tente outro id.")
+    }
 }
