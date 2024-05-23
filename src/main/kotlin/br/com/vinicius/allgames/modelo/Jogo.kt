@@ -1,4 +1,4 @@
-package org.example.org.example
+package br.com.vinicius.allgames.modelo
 
 // Classe representando um Jogo, com um contructor primário que aceita dois parâmetros: titulo e capa
 class Jogo (val titulo:String, val capa: String) {
