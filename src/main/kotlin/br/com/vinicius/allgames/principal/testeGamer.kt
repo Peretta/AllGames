@@ -2,15 +2,16 @@ import br.com.vinicius.allgames.modelo.Gamer
 import com.sun.source.tree.Scope
 
 fun main() {
-    val gamer1 = Gamer("Vini", "teste")
+    val gamer1 = Gamer("Vini", "teste@gmail.com")
     println(gamer1)
-    val gamer2 = Gamer("Pedro", "pedro@gmail", "02/12/2004", "matador_de_porco")
+    val gamer2 = Gamer("Pedro", "pedro@gmail.com", "02/12/2004", "pedrinho")
     println(gamer2)
 
     gamer1.let {
         it.dataNascimento="18/09/2000"
         it.usuario = "vinixius"
-        it.idInterno = "000-1"
-    }
+    }.also { print(gamer1.idInterno) }
+
+    gamer1.usuario = "Teste"
     print(gamer1)
 }
