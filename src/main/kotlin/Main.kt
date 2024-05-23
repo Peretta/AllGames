@@ -1,25 +1,31 @@
 package org.example
 
 import com.google.gson.Gson
-import org.example.org.example.InfoApiShark
 import org.example.org.example.InfoJogo
 import org.example.org.example.Jogo
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandlers
+import java.util.*
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
 
+    val leitura = Scanner(System.`in`)
+    println("Digite um código de jogo para buscar: ")
+    val busca = leitura.nextLine()
+
+    val endereco = "https://www.cheapshark.com/api/1.0/games?id=$busca"
+
     // cria um novo cliente http
     val client: HttpClient = HttpClient.newHttpClient()
 
     // Prepara uma solicitação para API externa com o método GET
     val request = HttpRequest.newBuilder()
-        .uri(URI.create("https://www.cheapshark.com/api/1.0/games?id=146"))
+        .uri(URI.create(endereco))
         .build()
 
 
@@ -43,4 +49,4 @@ fun main() {
         meuInfoJogo.info.thumb
     )
     print(meuJogo)
-    }
+}
