@@ -36,24 +36,39 @@ fun main() {
 
     //  armazena o corpo da respota JSON em uma variável
     val json = response.body()
-    println(json)
 
     // Instanciando o Gson para realizar a desserialização do JSON para objetos Kotlin
     val gson = Gson()
+
+    var meuJogo: Jogo? = null
 
     val resultado = runCatching {
 
         // Desserializando o JSON para um objeto da classe InfoJogo usando o Gson
         val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
 
-        // Instanciando um novo objeto Jogo utilizando os dados obtidos do objeto InfoJogo
-        val meuJogo = Jogo(
+        // Instanciando o Jogo utilizando os dados obtidos do objeto InfoJogo
+            meuJogo = Jogo(
             meuInfoJogo.info.title,
             meuInfoJogo.info.thumb
         )
-        print(meuJogo)
     }
     resultado.onFailure {
         println("Jogo Inexistente. Tente outro id.")
+    }
+    resultado.onSuccess {
+        println("Deseja inserir uma descrição personalizada? S/N")
+        val opcao = leitura.nextLine()
+        if (opcao.equals("s", true)){
+            println("Insira a descrição personalizada para o Jogo: ")
+            val descricao_personalizada = leitura.nextLine()
+            meuJogo?.descricao = descricao_personalizada
+        }else{
+            meuJogo?.descricao = meuJogo?.titulo
+        }
+        print(meuJogo)
+    }
+    resultado.onSuccess {
+        println("Busca realizada com sucesso")
     }
 }
