@@ -3,6 +3,7 @@ package org.example.br.com.vinicius.allgames.principal
 import br.com.vinicius.allgames.modelo.Gamer
 import br.com.vinicius.allgames.modelo.Jogo
 import br.com.vinicius.allgames.servicos.ConsumoApi
+import org.br.com.vinicius.allgames.utilitario.transformarEmIdade
 import java.util.*
 
 
@@ -18,6 +19,7 @@ fun main() {
     val gamer = Gamer.criarGamer(leitura)
     println("Cadastro concluido com sucesso. Dados do gamer")
     println(gamer)
+    println("IDADE DO GAMER: "+gamer.dataNascimento?.transformarEmIdade())
 
     do{
         println("Digite um código de jogo para buscar: ")
