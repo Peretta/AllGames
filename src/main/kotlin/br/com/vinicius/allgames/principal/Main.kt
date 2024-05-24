@@ -73,4 +73,20 @@ fun main() {
 
     println("JOGOS BUSCADOS:")
     println(gamer.jogosBuscados)
+
+    println("\n Jogos ordenados por título:")
+    gamer.jogosBuscados.sortBy {
+        it?.titulo
+    }
+
+    gamer.jogosBuscados.forEach {
+        println("Titulo: " + it?.titulo)
+    }
+
+    val jogosFiltrados = gamer.jogosBuscados.filter { it?.titulo?.contains("batman", true) ?: false }
+
+    println("Jogos filtrados: ")
+    println(jogosFiltrados)
+
+
 }

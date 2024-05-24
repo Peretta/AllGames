@@ -33,14 +33,14 @@ class Gamer(var nome:String,
     }
 
     // Bloco init, executado durante a inicialização do objeto, para validar nome e email
-init {
-    if (nome.isNullOrBlank()){
-        // Lança uma exceção se o nome estiver em branco
-        throw IllegalArgumentException("O nome está em branco")
-    }
-        // Valida o email e atribui ao atributo email
-    this.email = validarEmail()
-}
+//init {
+//    if (nome.isNullOrBlank()){
+//        // Lança uma exceção se o nome estiver em branco
+//        throw IllegalArgumentException("O nome está em branco")
+//    }
+//        // Valida o email e atribui ao atributo email
+//    this.email = validarEmail()
+//}
     // Converte o objeto Gamer para uma representação em String
     override fun toString(): String {
         return "Gamer(nome='$nome', email='$email', dataNascimento=$dataNascimento, usuario=$usuario, idInterno=$idInterno)"
