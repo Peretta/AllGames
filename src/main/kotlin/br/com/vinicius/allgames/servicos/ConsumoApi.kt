@@ -30,11 +30,13 @@ class ConsumoApi {
         //  armazena o corpo da respota JSON em uma variável
         val json = response.body()
 
-        // Instanciando o Gson para realizar a desserialização do JSON para objetos Kotlin
+        // Instancia o Gson para realizar a desserialização do JSON para objetos Kotlin
         val gson = Gson()
 
+        // Desserializa o Json em um objeto da classe InfoJogo usando Gson
         val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
 
+        // Retorna o objeto do infoJogo
         return meuInfoJogo
     }
 
