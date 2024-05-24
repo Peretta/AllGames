@@ -1,5 +1,6 @@
 package br.com.vinicius.allgames.modelo
 
+import java.util.Scanner
 import kotlin.random.Random
 
 // Classe Gamer com dois atributos obrigatórios (nome, email), ambos do tipo String
@@ -20,6 +21,9 @@ class Gamer(var nome:String,
     // Atributo idInterno com setter privado, só pode ser lido, não modificado externamente
     var idInterno: String?= null
         private set
+
+    // Declaração de uma lista mutável para armazenar elementos do tipo Jogo
+    val jogosBuscados = mutableListOf<Jogo?>()
 
     // Construtor secundário, que permite inicializar todos os atributos da classe
     constructor(nome: String, email: String, dataNascimento: String, usuario: String): this(nome, email){
@@ -65,6 +69,29 @@ init {
         }else{
             // Lança uma exceção se o email for inválido
             throw IllegalArgumentException("Email Inválido")
+        }
+    }
+
+    companion object{
+        fun criarGamer(leitura: Scanner): Gamer {
+            println("Boas vindas ao AluGames! Vamos fazer seu cadastro. Digite seu nome:")
+            val nome = leitura.nextLine()
+            println("Digite seu e-mail:")
+            val email = leitura.nextLine()
+            println("Deseja completar seu cadastro com usuário e data de nascimento? (S/N)")
+            val opcao = leitura.nextLine()
+
+            if (opcao.equals("s", true)) {
+                println("Digite sua data de nascimento(DD/MM/AAAA):")
+                val nascimento = leitura.nextLine()
+                println("Digite seu nome de usuário:")
+                val usuario = leitura.nextLine()
+
+                return Gamer(nome, email, nascimento, usuario)
+
+            }else{
+                return Gamer(nome, email)
+            }
         }
     }
 }
